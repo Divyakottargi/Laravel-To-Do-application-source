@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management System - Tech Stack</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --surface: #ffffff;
+        --text: #152033;
+        --muted: #5d6a7d;
+        --line: #d7dfeb;
+        --shadow: 0 18px 40px rgba(26, 43, 72, 0.12);
+        --blue: #2563eb;
+        --cyan: #06b6d4;
+        --green: #16a34a;
+        --amber: #d97706;
+        --indigo: #4f46e5;
+        --red: #dc2626;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 24%),
+          radial-gradient(circle at top right, rgba(6, 182, 212, 0.12), transparent 20%),
+          linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 40px 0 56px;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #10244a, #1e3a8a 55%, #0891b2);
+        color: #fff;
+        border-radius: 28px;
+        padding: 32px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto -120px -120px auto;
+        width: 280px;
+        height: 280px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 8px 12px;
+        border-radius: 999px;
+      }
+
+      h1 {
+        margin: 18px 0 12px;
+        font-size: clamp(30px, 5vw, 52px);
+        line-height: 1.04;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 6px;
+      }
+
+      .section {
+        margin-top: 28px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 22px;
+        box-shadow: 0 12px 28px rgba(18, 33, 60, 0.07);
+      }
+
+      .icon {
+        width: 56px;
+        height: 56px;
+        display: grid;
+        place-items: center;
+        border-radius: 18px;
+        margin-bottom: 16px;
+      }
+
+      .icon svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .blue { background: rgba(37, 99, 235, 0.12); color: var(--blue); }
+      .cyan { background: rgba(6, 182, 212, 0.12); color: var(--cyan); }
+      .green { background: rgba(22, 163, 74, 0.12); color: var(--green); }
+      .amber { background: rgba(217, 119, 6, 0.12); color: var(--amber); }
+      .indigo { background: rgba(79, 70, 229, 0.12); color: var(--indigo); }
+      .red { background: rgba(220, 38, 38, 0.12); color: var(--red); }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      .card p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #eef3f9;
+        color: #29405f;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .footer-note {
+        margin-top: 24px;
+        padding: 18px 20px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: min(100% - 20px, 100%);
+          padding-top: 20px;
+        }
+
+        .hero {
+          padding: 24px 20px;
+          border-radius: 22px;
+        }
+
+        .grid,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <span class="eyebrow">Task Management System</span>
+        <h1>Project Tools & Technologies</h1>
+        <p>
+          This page presents the full technology stack used in the project, organized as visual cards with icons.
+          It covers the frontend, backend, authentication, database, API communication, and development workflow.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>React</strong>
+            <span>Frontend UI</span>
+          </div>
+          <div class="stat">
+            <strong>Laravel 12</strong>
+            <span>REST API backend</span>
+          </div>
+          <div class="stat">
+            <strong>Sanctum</strong>
+            <span>Token auth</span>
+          </div>
+          <div class="stat">
+            <strong>MySQL</strong>
+            <span>Persistent storage</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>Technology Map</h2>
+            <p>The main tools used to build, style, connect, and secure the application.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="2.3"></circle>
+                <ellipse cx="12" cy="12" rx="10" ry="4.2"></ellipse>
+                <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"></ellipse>
+                <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"></ellipse>
+              </svg>
+            </div>
+            <h3>React 19</h3>
+            <p>The frontend UI library used to build reusable components, pages, protected routes, and interactive state-driven screens.</p>
+            <div class="tags">
+              <span class="tag">Components</span>
+              <span class="tag">State</span>
+              <span class="tag">Routing</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 6.5 12 2l9 4.5-9 4.5L3 6.5Z"></path>
+                <path d="M3 12.5 12 17l9-4.5"></path>
+                <path d="M3 17.5 12 22l9-4.5"></path>
+              </svg>
+            </div>
+            <h3>Vite 8</h3>
+            <p>The frontend build tool used for fast development, hot reload, and production bundling.</p>
+            <div class="tags">
+              <span class="tag">Dev Server</span>
+              <span class="tag">Build</span>
+              <span class="tag">Fast Reload</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon indigo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M4 7h16"></path>
+                <path d="M7 12h10"></path>
+                <path d="M10 17h4"></path>
+                <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+              </svg>
+            </div>
+            <h3>Tailwind CSS</h3>
+            <p>The utility-first CSS framework used to build the interface layout, cards, forms, tables, and responsive styling.</p>
+            <div class="tags">
+              <span class="tag">UI Styling</span>
+              <span class="tag">Responsive</span>
+              <span class="tag">Dark Mode</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M9 18 15 6"></path>
+                <path d="M6 8 3 12l3 4"></path>
+                <path d="m18 8 3 4-3 4"></path>
+              </svg>
+            </div>
+            <h3>Axios</h3>
+            <p>The HTTP client used in the frontend to call Laravel APIs, attach bearer tokens, and handle login and task requests.</p>
+            <div class="tags">
+              <span class="tag">REST API</span>
+              <span class="tag">Bearer Token</span>
+              <span class="tag">Requests</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M5 6h14v12H5z"></path>
+                <path d="M9 10h6"></path>
+                <path d="M9 14h4"></path>
+              </svg>
+            </div>
+            <h3>Laravel 12</h3>
+            <p>The backend framework used to build the REST API, authentication endpoints, validation logic, controllers, and database integration.</p>
+            <div class="tags">
+              <span class="tag">MVC</span>
+              <span class="tag">REST</span>
+              <span class="tag">Validation</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"></path>
+                <path d="m9.5 12 1.7 1.7 3.3-3.4"></path>
+              </svg>
+            </div>
+            <h3>Laravel Sanctum</h3>
+            <p>Used for token-based API authentication. It generates access tokens and protects task endpoints with authenticated middleware.</p>
+            <div class="tags">
+              <span class="tag">Auth</span>
+              <span class="tag">Tokens</span>
+              <span class="tag">Protected APIs</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
+                <path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
+                <path d="M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"></path>
+              </svg>
+            </div>
+            <h3>MySQL</h3>
+            <p>The relational database used to store users, tasks, personal access tokens, and Laravel system tables.</p>
+            <div class="tags">
+              <span class="tag">Users</span>
+              <span class="tag">Tasks</span>
+              <span class="tag">Persistence</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M8 7h8"></path>
+                <path d="M8 12h8"></path>
+                <path d="M8 17h5"></path>
+                <path d="M5 3h14a2 2 0 0 1 2 2v14l-4-3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path>
+              </svg>
+            </div>
+            <h3>REST API</h3>
+            <p>The communication layer between React and Laravel using JSON requests and responses for authentication and task operations.</p>
+            <div class="tags">
+              <span class="tag">JSON</span>
+              <span class="tag">CRUD</span>
+              <span class="tag">Client / Server</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon indigo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 3v18"></path>
+                <path d="M3 12h18"></path>
+                <circle cx="12" cy="12" r="9"></circle>
+              </svg>
+            </div>
+            <h3>Git & GitHub</h3>
+            <p>Used for version control, project history, source sharing, and deployment preparation.</p>
+            <div class="tags">
+              <span class="tag">Version Control</span>
+              <span class="tag">Repository</span>
+              <span class="tag">Publishing</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2>How Everything Connects</h2>
+            <p>A quick summary of how the full system works together.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M4 6h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 18h10"></path>
+              </svg>
+            </div>
+            <h3>Frontend Layer</h3>
+            <p>React renders the screens and forms, stores the auth token locally, and sends API requests through Axios.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 3 4 7v5c0 4.8 3.2 7.9 8 10 4.8-2.1 8-5.2 8-10V7l-8-4Z"></path>
+              </svg>
+            </div>
+            <h3>Backend Layer</h3>
+            <p>Laravel receives requests, validates data, creates tokens, protects routes, and applies business logic for tasks.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
+                <path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
+              </svg>
+            </div>
+            <h3>Database Layer</h3>
+            <p>MySQL stores persistent data such as user accounts, tasks, and access tokens generated by Sanctum.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        This file was created to accompany the repository README and make the project stack easier to present visually
+        on GitHub, in documentation folders, or during project submission demos.
+      </div>
+    </div>
+  </body>
+</html>
